@@ -335,26 +335,43 @@ export default function AboutPage() {
 
       {/* Goals / Vision */}
       <BentoCard title="VISION_2030" className="mb-6 sm:mb-8">
-        <div className="space-y-3 sm:space-y-4">
-          <p className="text-xs sm:text-sm text-[#6B7280]">{"// async function future() {"}</p>
-          <div className="pl-2 sm:pl-4 space-y-2.5 sm:space-y-3">
-            <GoalItem
-              icon="🚀"
-              title="Build Products People Love"
-              description="Create software that makes a meaningful difference in people's lives"
-            />
-            <GoalItem
-              icon="🌎"
-              title="Work on Hard Problems"
-              description="Tackle challenges at the intersection of AI, economics, and society"
-            />
-            <GoalItem
-              icon="🤝"
-              title="Give Back"
-              description="Mentor others and contribute to open source communities"
-            />
+        <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
+          {/* Photo */}
+          <div className="md:w-1/3 flex-shrink-0">
+            <div className="aspect-[4/5] rounded-sm overflow-hidden">
+              <Image
+                src="/vision-photo.png"
+                alt="Vision 2030"
+                width={300}
+                height={375}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
-          <p className="text-xs sm:text-sm text-[#6B7280]">{"// }"}</p>
+
+          {/* Goals */}
+          <div className="flex-1 space-y-3 sm:space-y-4">
+            <p className="text-xs sm:text-sm text-[#6B7280]">{"// goals.map(g => pursue(g))"}</p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-green-600 w-3 text-center">{">"}</span>
+                <p className="text-sm"><span className="text-[#374151]">await</span> buildProductsPeopleLove()</p>
+              </div>
+              <p className="pl-5 text-xs text-[#6B7280]">{"// Create software that makes a meaningful difference"}</p>
+
+              <div className="flex items-center gap-2">
+                <span className="text-green-600 w-3 text-center">{">"}</span>
+                <p className="text-sm"><span className="text-[#374151]">await</span> workOnHardProblems()</p>
+              </div>
+              <p className="pl-5 text-xs text-[#6B7280]">{"// Tackle AI, economics, and society challenges"}</p>
+
+              <div className="flex items-center gap-2">
+                <span className="text-green-600 w-3 text-center">{">"}</span>
+                <p className="text-sm"><span className="text-[#374151]">await</span> giveBack()</p>
+              </div>
+              <p className="pl-5 text-xs text-[#6B7280]">{"// Mentor others and contribute to open source"}</p>
+            </div>
+          </div>
         </div>
       </BentoCard>
 
