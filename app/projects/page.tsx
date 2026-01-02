@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { BentoCard } from "@/components/resume/bento-card";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Luke Fournier's projects - Sentinal AI file manager and other software engineering work.",
+};
 
 const projects = [
   {

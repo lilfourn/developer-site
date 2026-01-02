@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { ContactForm } from "@/components/resume/contact-form";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Luke Fournier - Available for internships, projects, and collaborations.",
+};
 
 const availability = [
   { status: "response_time", value: "< 24 hours", active: true },

@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { BentoCard } from "@/components/resume/bento-card";
+
+export const metadata: Metadata = {
+  title: "Experience",
+  description:
+    "Luke Fournier's professional experience - Software Engineer Intern at Asure Software, building AI systems and cloud infrastructure.",
+};
 
 // Experience data
 const experiences = [

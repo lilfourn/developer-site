@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { BentoCard } from "@/components/resume/bento-card";
 import { InstagramVideo } from "@/components/instagram-embed";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn more about Luke Fournier - Economics student at UT Austin, software engineer, and builder of AI-powered products.",
+};
 
 export default function AboutPage() {
   return (
