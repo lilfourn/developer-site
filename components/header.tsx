@@ -14,7 +14,7 @@ export default function Header() {
 
       {/* Mobile menu button */}
       <button
-        className="md:hidden flex flex-col justify-center items-center w-8 h-8 cursor-pointer"
+        className="md:hidden flex flex-col justify-center items-center w-8 h-8 cursor-pointer outline-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
       >
@@ -25,10 +25,10 @@ export default function Header() {
 
       {/* Desktop navigation */}
       <nav className="hidden md:flex items-center gap-8">
-        <a href="#experience" className="px-4 py-2 cursor-pointer text-sm hover:opacity-70 transition-opacity">
+        <a href="/experience" className="px-4 py-2 cursor-pointer text-sm hover:opacity-70 transition-opacity">
           Experience
         </a>
-        <a href="#projects" className="px-4 py-2 cursor-pointer text-sm hover:opacity-70 transition-opacity">
+        <a href="/projects" className="px-4 py-2 cursor-pointer text-sm hover:opacity-70 transition-opacity">
           Projects
         </a>
         <a href="/about" className="px-4 py-2 cursor-pointer text-sm hover:opacity-70 transition-opacity">
@@ -50,10 +50,10 @@ export default function Header() {
 
       {/* Mobile navigation dropdown */}
       <nav className={`absolute top-14 left-0 right-0 bg-[#CCCCCC] border-b border-[#171717]/20 md:hidden flex flex-col transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}`}>
-        <a href="#experience" onClick={() => setIsMenuOpen(false)} className="px-4 py-3 cursor-pointer text-sm hover:bg-[#171717]/5 transition-colors border-b border-[#171717]/10">
+        <a href="/experience" onClick={() => setIsMenuOpen(false)} className="px-4 py-3 cursor-pointer text-sm hover:bg-[#171717]/5 transition-colors border-b border-[#171717]/10">
           Experience
         </a>
-        <a href="#projects" onClick={() => setIsMenuOpen(false)} className="px-4 py-3 cursor-pointer text-sm hover:bg-[#171717]/5 transition-colors border-b border-[#171717]/10">
+        <a href="/projects" onClick={() => setIsMenuOpen(false)} className="px-4 py-3 cursor-pointer text-sm hover:bg-[#171717]/5 transition-colors border-b border-[#171717]/10">
           Projects
         </a>
         <a href="/about" onClick={() => setIsMenuOpen(false)} className="px-4 py-3 cursor-pointer text-sm hover:bg-[#171717]/5 transition-colors border-b border-[#171717]/10">

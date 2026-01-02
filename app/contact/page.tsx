@@ -11,14 +11,14 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-3xl mx-auto">
       {/* Header */}
-      <div className="mb-8 sm:mb-12">
-        <p className="text-[#6B7280] text-xs sm:text-sm tracking-wider mb-1 sm:mb-2">
-          {"// contact.ts"}
-        </p>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-          <span className="text-[#374151]">const</span> getInTouch
-          <span className="inline-block w-2 sm:w-2.5 h-5 sm:h-7 bg-[#171717] ml-1 sm:ml-2 animate-pulse align-middle" />
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
+          <span className="text-[#6B7280]"># </span>
+          CONTACT.md
         </h1>
+        <p className="text-[#6B7280] text-xs sm:text-sm">
+          {"// Let's connect"}
+        </p>
       </div>
 
       {/* Availability Status */}

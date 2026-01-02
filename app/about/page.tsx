@@ -279,36 +279,49 @@ export default function AboutPage() {
         </BentoCard>
       </div>
 
-      {/* Lacrosse Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
-        <BentoCard title="BEYOND_CODE" className="md:col-span-1">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">🥍</span>
-              <p className="font-bold text-lg">Lacrosse</p>
-            </div>
-            <div className="text-sm space-y-3">
-              <p className="text-[#6B7280]">{"// lifelong.passion"}</p>
-              <p>
-                I&apos;ve played lacrosse my entire life. It&apos;s taught me discipline,
-                teamwork, and the value of relentless preparation.
-              </p>
-              <div className="pt-2 border-t border-[#171717]/10 space-y-2">
-                <p className="text-[#6B7280] text-xs">{"// future.goals"}</p>
-                <p>
-                  <span className="text-[#374151]">const</span> dream = {"{"}
-                </p>
-                <div className="pl-4 text-sm">
-                  <p><span className="text-[#6B7280]">degree:</span> {'"MSCS"'},</p>
-                  <p><span className="text-[#6B7280]">athletics:</span> {'"NCAA Lacrosse"'},</p>
-                  <p><span className="text-[#6B7280]">level:</span> {'"Graduate"'}</p>
-                </div>
-                <p>{"}"}</p>
+      {/* Learning & Hobbies Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8 md:items-stretch">
+        {/* Left column - stacked cards */}
+        <div className="flex flex-col gap-3 sm:gap-4 h-full">
+          <BentoCard title="CURRENTLY_LEARNING" className="flex-1">
+            <div className="space-y-2 text-xs sm:text-sm">
+              <p className="text-[#6B7280]">{"// npx learning-stack"}</p>
+              <div className="space-y-1.5 sm:space-y-1">
+                <ProgressItem label="JavaScript" progress={35} />
+                <ProgressItem label="Python" progress={50} />
+                <ProgressItem label="LLM Engineering" progress={70} />
+                <ProgressItem label="System Design" progress={55} />
+                <ProgressItem label="Rust" progress={40} />
+                <ProgressItem label="Cloud Architecture" progress={35} />
               </div>
             </div>
-          </div>
-        </BentoCard>
+          </BentoCard>
 
+          <BentoCard title="WHEN_NOT_CODING" className="flex-1">
+            <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
+              <p className="text-[#6B7280]">{"// hobbies.forEach(h => enjoy(h))"}</p>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {[
+                  "Basketball 🏀",
+                  "Hiking 🥾",
+                  "Coffee ☕",
+                  "Podcasts 🎧",
+                  "Chess ♟️",
+                  "Travel ✈️",
+                ].map((hobby) => (
+                  <span
+                    key={hobby}
+                    className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 border border-[#171717]/20 rounded-sm hover:border-[#171717]/50 transition-all duration-300"
+                  >
+                    {hobby}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </BentoCard>
+        </div>
+
+        {/* Right column - Instagram */}
         <BentoCard title="IN_ACTION" className="md:col-span-1">
           <div className="flex flex-col items-center gap-3">
             <p className="text-[#6B7280] text-xs self-start">{"// highlight.reel"}</p>
@@ -316,46 +329,6 @@ export default function AboutPage() {
             <p className="text-xs text-[#6B7280] text-center">
               Wildest play of the season vs SMU
             </p>
-          </div>
-        </BentoCard>
-      </div>
-
-      {/* Currently Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
-        <BentoCard title="CURRENTLY_LEARNING">
-          <div className="space-y-2 text-xs sm:text-sm">
-            <p className="text-[#6B7280]">{"// npx learning-stack"}</p>
-            <div className="space-y-1.5 sm:space-y-1">
-              <ProgressItem label="JavaScript" progress={35} />
-              <ProgressItem label="Python" progress={50} />
-              <ProgressItem label="LLM Engineering" progress={70} />
-              <ProgressItem label="System Design" progress={55} />
-              <ProgressItem label="Rust" progress={40} />
-              <ProgressItem label="Cloud Architecture" progress={35} />
-            </div>
-          </div>
-        </BentoCard>
-
-        <BentoCard title="WHEN_NOT_CODING">
-          <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-            <p className="text-[#6B7280]">{"// hobbies.forEach(h => enjoy(h))"}</p>
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
-              {[
-                "Basketball 🏀",
-                "Hiking 🥾",
-                "Coffee ☕",
-                "Podcasts 🎧",
-                "Chess ♟️",
-                "Travel ✈️",
-              ].map((hobby) => (
-                <span
-                  key={hobby}
-                  className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 border border-[#171717]/20 rounded-sm hover:border-[#171717]/50 transition-all duration-300"
-                >
-                  {hobby}
-                </span>
-              ))}
-            </div>
           </div>
         </BentoCard>
       </div>
