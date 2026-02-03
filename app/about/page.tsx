@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { BentoCard } from "@/components/resume/bento-card";
 import { InstagramVideo } from "@/components/instagram-embed";
@@ -6,12 +7,22 @@ import { InstagramVideo } from "@/components/instagram-embed";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn more about Luke Fournier - Economics student at UT Austin, software engineer, and builder of AI-powered products.",
+    "Learn more about Luke Fournier - Austin software engineer and UT Austin economics student building AI-powered products.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    url: "https://lukefournier.com/about",
+  },
 };
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-5xl mx-auto">
+    <main
+      id="main"
+      tabIndex={-1}
+      className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-5xl mx-auto"
+    >
       {/* README Header */}
       <div className="mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
@@ -387,7 +398,7 @@ export default function AboutPage() {
         <p className="text-[#6B7280] text-xs sm:text-sm mb-3 sm:mb-4">
           {"// Want to connect?"}
         </p>
-        <a
+        <Link
           href="/"
           className="inline-block group relative px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base border border-[#171717]/20 rounded-sm hover:border-[#171717]/50 transition-all duration-300 ease-linear hover:shadow-[4px_4px_0px_0px_rgba(23,23,23,0.1)]"
         >
@@ -397,7 +408,7 @@ export default function AboutPage() {
           <span className="absolute top-0 left-0 w-px h-0 bg-[#171717] transition-all duration-300 ease-linear group-hover:h-2" />
           <span className="absolute bottom-0 right-0 w-0 h-px bg-[#171717] transition-all duration-300 ease-linear group-hover:w-2" />
           <span className="absolute bottom-0 right-0 w-px h-0 bg-[#171717] transition-all duration-300 ease-linear group-hover:h-2" />
-        </a>
+        </Link>
       </div>
     </main>
   );
@@ -463,27 +474,6 @@ function ProgressItem({ label, progress }: { label: string; progress: number }) 
           className="h-full bg-[#171717]/60 rounded-full transition-all duration-500"
           style={{ width: `${progress}%` }}
         />
-      </div>
-    </div>
-  );
-}
-
-// Goal Item Component
-function GoalItem({
-  icon,
-  title,
-  description,
-}: {
-  icon: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="flex gap-2 sm:gap-3 items-start">
-      <span className="text-base sm:text-xl">{icon}</span>
-      <div>
-        <p className="font-medium text-sm sm:text-base">{title}</p>
-        <p className="text-xs sm:text-sm text-[#6B7280]">{description}</p>
       </div>
     </div>
   );

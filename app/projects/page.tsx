@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { BentoCard } from "@/components/resume/bento-card";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Luke Fournier's projects - Sentinal AI file manager and other software engineering work.",
+    "Projects by Luke Fournier, an Austin software engineer and UT Austin student - Sentinal AI file manager and more.",
+  alternates: {
+    canonical: "/projects",
+  },
+  openGraph: {
+    url: "https://lukefournier.com/projects",
+  },
 };
 
 const projects = [
@@ -91,7 +98,11 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-5xl mx-auto">
+    <main
+      id="main"
+      tabIndex={-1}
+      className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-5xl mx-auto"
+    >
       {/* PROJECTS.md Header */}
       <div className="mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
@@ -267,7 +278,7 @@ export default function ProjectsPage() {
         <p className="text-[#6B7280] text-sm mb-4">
           {"// Want to collaborate?"}
         </p>
-        <a
+        <Link
           href="/"
           className="inline-block group relative px-6 py-3 border border-[#171717]/20 rounded-sm hover:border-[#171717]/50 transition-all duration-300 ease-linear hover:shadow-[4px_4px_0px_0px_rgba(23,23,23,0.1)]"
         >
@@ -277,7 +288,7 @@ export default function ProjectsPage() {
           <span className="absolute top-0 left-0 w-px h-0 bg-[#171717] transition-all duration-300 ease-linear group-hover:h-2" />
           <span className="absolute bottom-0 right-0 w-0 h-px bg-[#171717] transition-all duration-300 ease-linear group-hover:w-2" />
           <span className="absolute bottom-0 right-0 w-px h-0 bg-[#171717] transition-all duration-300 ease-linear group-hover:h-2" />
-        </a>
+        </Link>
       </div>
     </main>
   );

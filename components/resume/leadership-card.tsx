@@ -4,7 +4,7 @@ export function LeadershipCard() {
   return (
     <BentoCard title="LEADERSHIP" className="col-span-1">
       <div className="space-y-3">
-        <p className="font-bold">Texas Men's Lacrosse</p>
+        <p className="font-bold">Texas Men&apos;s Lacrosse</p>
 
         <div className="text-sm space-y-2">
           <div>

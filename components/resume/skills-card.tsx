@@ -24,7 +24,7 @@ export function SkillsCard() {
                   <p key={item} className="group cursor-default">
                     <span className="text-[#6B7280]">|</span>{" "}
                     <span className="transition-all duration-300 ease-linear group-hover:font-bold">
-                      "{item}"
+                      &quot;{item}&quot;
                     </span>
                     {i < items.length - 1 && (
                       <span className="text-[#6B7280]">,</span>

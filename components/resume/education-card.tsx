@@ -17,17 +17,17 @@ export function EducationCard() {
         </p>
         <div className="pl-4 text-sm space-y-1">
           <p>
-            <span className="text-[#6B7280]">degree:</span> "BS Economics"
+            <span className="text-[#6B7280]">degree:</span> &quot;BS Economics&quot;
           </p>
           <p>
-            <span className="text-[#6B7280]">minors:</span> ["CS", "Business", "Data Science"]
+            <span className="text-[#6B7280]">minors:</span> [&quot;CS&quot;, &quot;Business&quot;, &quot;Data Science&quot;]
           </p>
           <p>
             <span className="text-[#6B7280]">gpa:</span>{" "}
             <span className="font-medium">3.77</span>
           </p>
           <p>
-            <span className="text-[#6B7280]">expected:</span> "May 2027"
+            <span className="text-[#6B7280]">expected:</span> &quot;May 2027&quot;
           </p>
         </div>
         <p className="font-bold">{"}"}</p>

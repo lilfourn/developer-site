@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { BentoCard } from "@/components/resume/bento-card";
 
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Luke Fournier's professional experience - Software Engineer Intern at Asure Software, building AI systems and cloud infrastructure.",
+    "Luke Fournier's experience as an Austin software engineer - Software Engineer Intern at Asure Software building AI systems.",
+  alternates: {
+    canonical: "/experience",
+  },
+  openGraph: {
+    url: "https://lukefournier.com/experience",
+  },
 };
 
 // Experience data
@@ -34,7 +41,11 @@ const experiences = [
 
 export default function ExperiencePage() {
   return (
-    <main className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-5xl mx-auto">
+    <main
+      id="main"
+      tabIndex={-1}
+      className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-5xl mx-auto"
+    >
       {/* Header - matching about page style */}
       <div className="mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
@@ -132,7 +143,7 @@ export default function ExperiencePage() {
             <p className="text-[#6B7280] text-xs sm:text-sm mb-4">
               Looking for Summer 2026 internship in AI/ML, Full-Stack, or FinTech
             </p>
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium
                        px-3 sm:px-4 py-1.5 sm:py-2 border border-[#171717]/20 rounded-sm
@@ -140,7 +151,7 @@ export default function ExperiencePage() {
                        transition-all duration-300"
             >
               <span className="text-[#374151]">await</span> connect();
-            </a>
+            </Link>
           </div>
         </BentoCard>
       </div>
@@ -199,7 +210,7 @@ export default function ExperiencePage() {
         <p className="text-[#6B7280] text-xs sm:text-sm mb-3 sm:mb-4">
           {"// Want to work together?"}
         </p>
-        <a
+        <Link
           href="/contact"
           className="inline-block group relative px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base
                    border border-[#171717]/20 rounded-sm hover:border-[#171717]/50
@@ -211,7 +222,7 @@ export default function ExperiencePage() {
           <span className="absolute top-0 left-0 w-px h-0 bg-[#171717] transition-all duration-300 ease-linear group-hover:h-2" />
           <span className="absolute bottom-0 right-0 w-0 h-px bg-[#171717] transition-all duration-300 ease-linear group-hover:w-2" />
           <span className="absolute bottom-0 right-0 w-px h-0 bg-[#171717] transition-all duration-300 ease-linear group-hover:h-2" />
-        </a>
+        </Link>
       </div>
     </main>
   );

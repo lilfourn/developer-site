@@ -122,7 +122,11 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="mt-8 sm:mt-12 md:mt-16 pt-4 sm:pt-6 md:pt-8">
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      className="mt-8 sm:mt-12 md:mt-16 pt-4 sm:pt-6 md:pt-8"
+    >
       <div
         className="relative p-4 sm:p-5 md:p-6 border border-[#171717]/20 rounded-sm
                    transition-all duration-300 ease-linear
@@ -136,12 +140,15 @@ export function ContactForm() {
         <span className="absolute bottom-0 right-0 w-0 h-0.5 bg-[#171717] transition-all duration-300 ease-linear group-hover:w-8" />
         <span className="absolute bottom-0 right-0 w-0.5 h-0 bg-[#171717] transition-all duration-300 ease-linear group-hover:h-8" />
 
-        <h2 className="text-[#6B7280] text-xs sm:text-sm mb-4 sm:mb-6 uppercase tracking-wide">
+        <h2
+          id="contact-title"
+          className="text-[#6B7280] text-xs sm:text-sm mb-4 sm:mb-6 uppercase tracking-wide"
+        >
           {"// CONTACT"}
         </h2>
 
         {status === "sent" ? (
-          <div className="py-8 sm:py-12 text-center">
+          <div className="py-8 sm:py-12 text-center" role="status" aria-live="polite">
             <p className="text-base sm:text-xl font-bold text-[#374151] flex items-center justify-center gap-2 sm:gap-3">
               <span>{">"} message.sent</span>
               <svg
@@ -152,6 +159,7 @@ export function ContactForm() {
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <path
                   d="M5 13l4 4L19 7"
@@ -163,7 +171,7 @@ export function ContactForm() {
                 />
               </svg>
             </p>
-            <p className="text-[#6B7280] text-sm sm:text-base mt-2">Thanks! I'll get back to you soon.</p>
+            <p className="text-[#6B7280] text-sm sm:text-base mt-2">Thanks! I&apos;ll get back to you soon.</p>
             <button
               onClick={() => setStatus("idle")}
               className="mt-3 sm:mt-4 text-xs sm:text-sm text-[#6B7280] hover:text-[#171717] transition-colors cursor-pointer"
@@ -172,7 +180,7 @@ export function ContactForm() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" aria-busy={status === "sending"}>
             {/* Function signature */}
             <p className="text-sm sm:text-lg font-bold">
               <span className="text-[#374151]">async function</span>{" "}
@@ -194,6 +202,7 @@ export function ContactForm() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
+                    autoComplete="name"
                     maxLength={100}
                     placeholder='"John Doe"'
                     className="flex-1 bg-transparent border-b border-[#171717]/30
@@ -218,6 +227,9 @@ export function ContactForm() {
                     value={email}
                     onChange={(e) => handleEmailChange(e.target.value)}
                     required
+                    autoComplete="email"
+                    aria-invalid={Boolean(emailError)}
+                    aria-describedby={emailError ? "email-error" : undefined}
                     maxLength={254}
                     placeholder='"you@example.com"'
                     className={`flex-1 bg-transparent border-b outline-none py-1 px-2 text-sm sm:text-base
@@ -227,7 +239,13 @@ export function ContactForm() {
                   />
                 </div>
                 {emailError && (
-                  <p className="text-red-600 text-[10px] sm:text-xs sm:pl-24">{emailError}</p>
+                  <p
+                    id="email-error"
+                    className="text-red-600 text-[10px] sm:text-xs sm:pl-24"
+                    role="alert"
+                  >
+                    {emailError}
+                  </p>
                 )}
               </div>
 
@@ -244,6 +262,7 @@ export function ContactForm() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
+                    autoComplete="off"
                     maxLength={2000}
                     rows={3}
                     placeholder='`Hello Luke...`'
@@ -261,6 +280,7 @@ export function ContactForm() {
                 <button
                   type="submit"
                   disabled={!isFormValid || status === "sending"}
+                  aria-disabled={!isFormValid || status === "sending"}
                   className={`relative px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base font-medium group/btn
                            transition-opacity duration-300
                            ${!isFormValid || status === "sending"
@@ -280,17 +300,17 @@ export function ContactForm() {
               </div>
 
               {status === "error" && (
-                <p className="text-red-600 text-xs sm:text-sm">
+                <p className="text-red-600 text-xs sm:text-sm" role="alert">
                   {"// Error: Failed to send. Please try again."}
                 </p>
               )}
               {status === "security_error" && (
-                <p className="text-red-600 text-xs sm:text-sm">
+                <p className="text-red-600 text-xs sm:text-sm" role="alert">
                   {"// Error: Invalid content detected."}
                 </p>
               )}
               {status === "rate_limited" && (
-                <p className="text-red-600 text-xs sm:text-sm">
+                <p className="text-red-600 text-xs sm:text-sm" role="alert">
                   {"// Error: Please wait before sending another message."}
                 </p>
               )}

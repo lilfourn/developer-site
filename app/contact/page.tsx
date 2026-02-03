@@ -4,7 +4,13 @@ import { ContactForm } from "@/components/resume/contact-form";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Luke Fournier - Available for internships, projects, and collaborations.",
+    "Contact Luke Fournier, an Austin software engineer and UT Austin student - available for projects and collaborations.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    url: "https://lukefournier.com/contact",
+  },
 };
 
 const availability = [
@@ -16,7 +22,11 @@ const availability = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-3xl mx-auto">
+    <main
+      id="main"
+      tabIndex={-1}
+      className="min-h-screen px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 max-w-3xl mx-auto"
+    >
       {/* Header */}
       <div className="mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
@@ -48,7 +58,7 @@ export default function ContactPage() {
                   }`}
                 />
                 <span className="text-[#6B7280]">{item.status}:</span>
-                <span className="font-medium">"{item.value}"</span>
+                <span className="font-medium">&quot;{item.value}&quot;</span>
               </div>
             ))}
           </div>

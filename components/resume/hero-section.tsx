@@ -67,9 +67,9 @@ export function HeroSection({ mobileCompact = false }: HeroSectionProps) {
 
         {/* Single line context */}
         <p className="text-xl text-[#6B7280]">
-          Software Engineer{" "}
-          <span className="text-[#171717]/30">•</span>{" "}
-          Austin, TX
+          Austin, TX <span className="text-[#171717]/30">•</span>{" "}
+          Software Engineer &amp; Developer{" "}
+          <span className="text-[#171717]/30">•</span> UT Austin
         </p>
 
         {/* Experience summary */}
