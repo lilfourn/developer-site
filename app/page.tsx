@@ -8,6 +8,7 @@ import { EducationCard } from "../components/resume/education-card";
 import { ProjectsCard } from "../components/resume/projects-card";
 import { LeadershipCard } from "../components/resume/leadership-card";
 import { ContactForm } from "../components/resume/contact-form";
+import { experiences } from "@/data/experience";
 
 export const metadata: Metadata = {
   alternates: {
@@ -86,21 +87,25 @@ export default function Home() {
                   <p className="text-[#6B7280] text-xs tracking-wider mb-3">{"// experience"}</p>
                   <Link
                     href="/experience"
-                    className="inline-flex items-center gap-3 px-4 py-2.5 border border-[#171717]/20 rounded-sm
+                    className="inline-flex w-full flex-col items-stretch gap-3 px-4 py-2.5 border border-[#171717]/20 rounded-sm
                              transition-all duration-300 ease-linear
                              hover:border-[#171717]/50 hover:shadow-[2px_2px_0px_0px_rgba(23,23,23,0.1)]"
                   >
-                    <Image
-                      src="/asure-loho.svg"
-                      alt="Asure Software"
-                      width={24}
-                      height={24}
-                      className="opacity-80"
-                    />
-                    <div className="text-left">
-                      <p className="font-medium text-sm">Asure Software</p>
-                      <p className="text-[#6B7280] text-xs">Software Engineer Intern</p>
-                    </div>
+                    {experiences.map((exp) => (
+                      <div key={exp.id} className="flex items-center gap-3">
+                        <Image
+                          src={exp.logo}
+                          alt={exp.company}
+                          width={exp.logoWidth}
+                          height={exp.logoHeight}
+                          className="h-6 w-auto opacity-80 flex-shrink-0"
+                        />
+                        <div className="text-left min-w-0">
+                          <p className="font-medium text-sm">{exp.company}</p>
+                          <p className="text-[#6B7280] text-xs">{exp.role}</p>
+                        </div>
+                      </div>
+                    ))}
                   </Link>
                 </div>
               </div>

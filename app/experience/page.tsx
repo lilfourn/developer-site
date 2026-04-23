@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { BentoCard } from "@/components/resume/bento-card";
+import { experiences } from "@/data/experience";
 
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Luke Fournier's experience as an Austin software engineer - Software Engineer Intern at Asure Software building AI systems.",
+    "Luke Fournier's experience as an Austin software engineer, including an incoming software engineering internship at Dimensional Fund Advisors and prior AI systems work at Asure Software.",
   alternates: {
     canonical: "/experience",
   },
@@ -14,30 +15,6 @@ export const metadata: Metadata = {
     url: "https://lukefournier.com/experience",
   },
 };
-
-// Experience data
-const experiences = [
-  {
-    id: "asure-2025",
-    company: "Asure Software",
-    role: "Software Engineer Intern",
-    location: "Austin, TX",
-    period: "Summer 2025",
-    logo: "/asure-loho.svg",
-    description: "Built production AI systems for enterprise payroll & HR platform",
-    highlights: [
-      "Designed and built AI agent using Claude (Bedrock) for Canadian tax operations",
-      "Architected end-to-end AWS infrastructure (Lambda, DynamoDB, API Gateway)",
-      "Shipped customer-facing LLM feature serving thousands of users daily",
-    ],
-    techStack: ["Python", "AWS Lambda", "Bedrock (Claude)", "DynamoDB", "Jenkins", "API Gateway"],
-    metrics: {
-      linesOfCode: "5,000+",
-      pullRequests: 47,
-      deployments: 34,
-    }
-  },
-];
 
 export default function ExperiencePage() {
   return (
@@ -60,22 +37,24 @@ export default function ExperiencePage() {
       {/* Experience Cards */}
       <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-12">
         {experiences.map((exp) => (
-          <BentoCard key={exp.id} title={exp.period.toUpperCase()} className="overflow-visible">
+          <BentoCard key={exp.id} title={exp.cardTitle.toUpperCase()} className="overflow-visible">
             {/* Company Header */}
             <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
               {exp.logo && (
                 <Image
                   src={exp.logo}
                   alt={exp.company}
-                  width={48}
-                  height={48}
-                  className="w-10 h-10 sm:w-12 sm:h-12 opacity-80 flex-shrink-0"
+                  width={exp.logoWidth}
+                  height={exp.logoHeight}
+                  className="h-10 w-auto sm:h-12 opacity-80 flex-shrink-0"
                 />
               )}
               <div className="flex-1 min-w-0">
                 <h2 className="text-lg sm:text-xl font-bold">{exp.company}</h2>
                 <p className="text-[#374151] text-sm sm:text-base">{exp.role}</p>
-                <p className="text-xs sm:text-sm text-[#6B7280] mt-0.5">{exp.location}</p>
+                <p className="text-xs sm:text-sm text-[#6B7280] mt-0.5">
+                  {exp.location} <span className="text-[#171717]/30">•</span> {exp.period}
+                </p>
               </div>
             </div>
 
@@ -84,76 +63,58 @@ export default function ExperiencePage() {
               {exp.description}
             </p>
 
-            {/* Highlights */}
-            <div className="mb-4 sm:mb-6">
-              <p className="text-[#6B7280] text-xs mb-2 sm:mb-3 font-mono">{"// key contributions"}</p>
-              <ul className="space-y-2">
-                {exp.highlights.map((highlight, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
-                    <span className="text-green-600 flex-shrink-0 mt-0.5">→</span>
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {exp.highlights?.length ? (
+              <div className="mb-4 sm:mb-6">
+                <p className="text-[#6B7280] text-xs mb-2 sm:mb-3 font-mono">{"// key contributions"}</p>
+                <ul className="space-y-2">
+                  {exp.highlights.map((highlight, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
+                      <span className="text-green-600 flex-shrink-0 mt-0.5">→</span>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
-            {/* Tech Stack */}
-            <div className="mb-4 sm:mb-6">
-              <p className="text-[#6B7280] text-xs mb-2 sm:mb-3 font-mono">{"// tech stack"}</p>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {exp.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-[10px] sm:text-xs px-2 sm:px-2.5 py-1 sm:py-1.5
+            {exp.techStack?.length ? (
+              <div className="mb-4 sm:mb-6">
+                <p className="text-[#6B7280] text-xs mb-2 sm:mb-3 font-mono">{"// tech stack"}</p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {exp.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-[10px] sm:text-xs px-2 sm:px-2.5 py-1 sm:py-1.5
                              border border-[#171717]/20 rounded-sm
                              hover:border-[#171717]/40 transition-all duration-200"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : null}
 
-            {/* Metrics */}
-            <div className="pt-4 border-t border-[#171717]/10">
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-                <div>
-                  <p className="text-lg sm:text-2xl font-bold">{exp.metrics.linesOfCode}</p>
-                  <p className="text-[10px] sm:text-xs text-[#6B7280]">Lines of Code</p>
-                </div>
-                <div>
-                  <p className="text-lg sm:text-2xl font-bold">{exp.metrics.pullRequests}</p>
-                  <p className="text-[10px] sm:text-xs text-[#6B7280]">Pull Requests</p>
-                </div>
-                <div>
-                  <p className="text-lg sm:text-2xl font-bold">{exp.metrics.deployments}</p>
-                  <p className="text-[10px] sm:text-xs text-[#6B7280]">Deployments</p>
+            {exp.metrics ? (
+              <div className="pt-4 border-t border-[#171717]/10">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                  <div>
+                    <p className="text-lg sm:text-2xl font-bold">{exp.metrics.linesOfCode}</p>
+                    <p className="text-[10px] sm:text-xs text-[#6B7280]">Lines of Code</p>
+                  </div>
+                  <div>
+                    <p className="text-lg sm:text-2xl font-bold">{exp.metrics.pullRequests}</p>
+                    <p className="text-[10px] sm:text-xs text-[#6B7280]">Pull Requests</p>
+                  </div>
+                  <div>
+                    <p className="text-lg sm:text-2xl font-bold">{exp.metrics.deployments}</p>
+                    <p className="text-[10px] sm:text-xs text-[#6B7280]">Deployments</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : null}
           </BentoCard>
         ))}
-
-        {/* Open to Opportunities Card */}
-        <BentoCard title="SUMMER 2026" className="border-dashed">
-          <div className="text-center py-4 sm:py-6">
-            <p className="text-[#374151] text-sm sm:text-base mb-2">
-              <span className="text-[#6B7280]">const</span> status = <span className="text-green-600">{'"Open to opportunities"'}</span>;
-            </p>
-            <p className="text-[#6B7280] text-xs sm:text-sm mb-4">
-              Looking for Summer 2026 internship in AI/ML, Full-Stack, or FinTech
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium
-                       px-3 sm:px-4 py-1.5 sm:py-2 border border-[#171717]/20 rounded-sm
-                       hover:border-[#171717]/50 hover:shadow-[2px_2px_0px_0px_rgba(23,23,23,0.1)]
-                       transition-all duration-300"
-            >
-              <span className="text-[#374151]">await</span> connect();
-            </Link>
-          </div>
-        </BentoCard>
       </div>
 
       {/* Skills Grid */}

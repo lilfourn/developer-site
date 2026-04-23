@@ -1,12 +1,5 @@
 import Image from "next/image";
-
-const experience = [
-  {
-    company: "Asure Software",
-    role: "Software Engineer Intern",
-    logo: "/asure-loho.svg",
-  },
-];
+import { experiences } from "@/data/experience";
 
 interface HeroSectionProps {
   mobileCompact?: boolean;
@@ -21,9 +14,9 @@ export function HeroSection({ mobileCompact = false }: HeroSectionProps) {
           {"// experience"}
         </p>
         <div className="flex flex-wrap gap-2">
-          {experience.map((exp) => (
+          {experiences.map((exp) => (
             <div
-              key={exp.company}
+              key={exp.id}
               className="flex items-center gap-2 px-2 py-1.5 border border-[#171717]/20 rounded-sm
                          transition-all duration-300 ease-linear
                          hover:border-[#171717]/50 hover:shadow-[2px_2px_0px_0px_rgba(23,23,23,0.1)]"
@@ -31,9 +24,9 @@ export function HeroSection({ mobileCompact = false }: HeroSectionProps) {
               <Image
                 src={exp.logo}
                 alt={exp.company}
-                width={20}
-                height={20}
-                className="opacity-80"
+                width={exp.logoWidth}
+                height={exp.logoHeight}
+                className="h-5 w-auto opacity-80 flex-shrink-0"
               />
               <div className="text-xs">
                 <p className="font-medium">{exp.company}</p>
@@ -78,9 +71,9 @@ export function HeroSection({ mobileCompact = false }: HeroSectionProps) {
             {"// experience"}
           </p>
           <div className="flex flex-wrap gap-4">
-            {experience.map((exp) => (
+            {experiences.map((exp) => (
               <div
-                key={exp.company}
+                key={exp.id}
                 className="flex items-center gap-3 px-3 py-2 border border-[#171717]/20 rounded-sm
                            transition-all duration-300 ease-linear
                            hover:border-[#171717]/50 hover:shadow-[2px_2px_0px_0px_rgba(23,23,23,0.1)]"
@@ -88,9 +81,9 @@ export function HeroSection({ mobileCompact = false }: HeroSectionProps) {
                 <Image
                   src={exp.logo}
                   alt={exp.company}
-                  width={24}
-                  height={24}
-                  className="opacity-80"
+                  width={exp.logoWidth}
+                  height={exp.logoHeight}
+                  className="h-6 w-auto opacity-80 flex-shrink-0"
                 />
                 <div className="text-sm">
                   <p className="font-medium">{exp.company}</p>

@@ -6,7 +6,7 @@ import { BentoCard } from "@/components/resume/bento-card";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Projects by Luke Fournier, an Austin software engineer and UT Austin student - Sentinal AI file manager and more.",
+    "Projects by Luke Fournier, an Austin software engineer and UT Austin student - including Sentinal, DevSkip, and other shipped products.",
   alternates: {
     canonical: "/projects",
   },
@@ -15,47 +15,71 @@ export const metadata: Metadata = {
   },
 };
 
-const projects = [
+type ProjectStatus = "shipped" | "in-progress" | "planned";
+
+type Project = {
+  name: string;
+  description: string;
+  fullDescription?: string;
+  technologies: string[];
+  status: ProjectStatus;
+  link?: string;
+  logo?: string;
+  highlights?: string[];
+  year?: string;
+};
+
+const statusConfig: Record<ProjectStatus, { color: string; label: string }> = {
+  shipped: { color: "bg-green-500", label: "Shipped" },
+  "in-progress": { color: "bg-yellow-500 animate-pulse", label: "Building" },
+  planned: { color: "bg-[#171717]/30", label: "Planned" },
+};
+
+const featuredProject: Project = {
+  name: "Sentinal",
+  description: "AI-powered desktop file manager",
+  fullDescription:
+    "A desktop application that leverages Claude to intelligently analyze, organize, and search files. Users can describe their organization needs and preview all changes before execution.",
+  technologies: ["Tauri", "Rust", "React", "TypeScript", "Claude AI"],
+  status: "shipped",
+  link: "https://github.com/lilfourn/Sentinal",
+  logo: "/sentinal-logo.svg",
+  highlights: [
+    "Semantic search beyond filenames",
+    "AI-generated organization rules",
+    "Virtual filesystem preview",
+    "85-94% token savings with stratified sampling",
+  ],
+  year: "2025",
+};
+
+const caseStudyProjects: Project[] = [
   {
-    name: "Sentinal",
-    description: "AI-powered desktop file manager",
+    name: "DevSkip",
+    description: "Student developer marketplace website",
     fullDescription:
-      "A desktop application that leverages Claude to intelligently analyze, organize, and search files. Users can describe their organization needs and preview all changes before execution.",
-    technologies: ["Tauri", "Rust", "React", "TypeScript", "Claude AI"],
-    status: "shipped" as const,
-    link: "https://github.com/lilfourn/Sentinal",
-    logo: "/sentinal-logo.svg",
+      "A polished marketing site for matching businesses with vetted student developers, backed by workflow previews, trust surfaces, and documentation that explain how projects move from request to delivery.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    status: "shipped",
+    link: "https://www.devskip.com",
+    logo: "/devskip-logo.svg",
     highlights: [
-      "Semantic search beyond filenames",
-      "AI-generated organization rules",
-      "Virtual filesystem preview",
-      "85-94% token savings with stratified sampling",
+      "Landing hero anchored by a dashboard-style product preview",
+      "Request and trust & safety workflows shown visually",
+      "Docs surface for pricing, process, and security",
+      "Responsive storytelling across marketing and support pages",
     ],
-    year: "2025",
   },
-  {
-    name: "Todo App",
-    description: "No-BS minimalist desktop todo app",
-    fullDescription:
-      "A minimalist desktop todo application built with Tauri that emphasizes simplicity and local data privacy. All you need to manage daily tasks.",
-    technologies: ["Tauri", "React", "TypeScript", "Vite", "Supabase"],
-    status: "shipped" as const,
-    link: "https://github.com/lilfourn/Todo-App",
-    highlights: [
-      "Keyboard shortcuts (Cmd+N, Cmd+Z)",
-      "Auto-cleanup of old tasks",
-      "100% local data privacy",
-      "Homebrew installable",
-    ],
-    year: "2025",
-  },
+];
+
+const otherProjects: Project[] = [
   {
     name: "Lafayette Equipment Rentals",
     description: "Modern equipment rental website",
     fullDescription:
       "A responsive equipment rental website for a Lafayette, NJ business. Features advanced search, quote requests, and a custom theming system.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    status: "shipped" as const,
+    status: "shipped",
     link: "https://github.com/lilfourn/lafayette-equipment-rentals",
     highlights: [
       "Advanced search & filtering",
@@ -71,7 +95,7 @@ const projects = [
     fullDescription:
       "A code-themed personal portfolio built with Next.js 15, featuring bento-style cards, smooth animations, and a unique developer aesthetic.",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    status: "shipped" as const,
+    status: "shipped",
     link: "https://github.com/lilfourn/luke-website",
     highlights: [
       "Bento grid layout",
@@ -80,21 +104,18 @@ const projects = [
     ],
     year: "2025",
   },
-  {
-    name: "NCAA Lacrosse Analytics",
-    description: "Performance tracking and analysis",
-    fullDescription:
-      "A data analytics platform for tracking lacrosse performance metrics, game statistics, and training progress.",
-    technologies: ["Python", "Pandas", "Streamlit", "PostgreSQL"],
-    status: "in-progress" as const,
-    highlights: [
-      "Game performance tracking",
-      "Statistical analysis",
-      "Training optimization",
-    ],
-    year: "2025",
-  },
 ];
+
+const allProjects = [featuredProject, ...caseStudyProjects, ...otherProjects];
+
+const projectStats = {
+  shipped: allProjects.filter((project) => project.status === "shipped").length,
+  inProgress: 1,
+  technologies: allProjects.reduce(
+    (acc, project) => acc + project.technologies.length,
+    0,
+  ),
+};
 
 export default function ProjectsPage() {
   return (
@@ -105,13 +126,10 @@ export default function ProjectsPage() {
     >
       {/* PROJECTS.md Header */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
           <span className="text-[#6B7280]"># </span>
           PROJECTS.md
         </h1>
-        <p className="text-[#6B7280] text-xs sm:text-sm">
-          {"// Things I've built and am building"}
-        </p>
       </div>
 
       {/* Stats Bar */}
@@ -119,20 +137,28 @@ export default function ProjectsPage() {
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-green-500" />
           <span className="text-[#6B7280]">
-            {projects.filter((p) => p.status === "shipped").length} shipped
+            {projectStats.shipped} shipped
           </span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
           <span className="text-[#6B7280]">
-            {projects.filter((p) => p.status === "in-progress").length} in progress
+            {projectStats.inProgress} in progress
           </span>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-[#6B7280]">
-            {projects.reduce((acc, p) => acc + p.technologies.length, 0)}+ technologies
+            {projectStats.technologies}+ technologies
           </span>
         </div>
+      </div>
+
+      {/* DevSkip Client Project */}
+      <div className="mb-8">
+        <p className="text-[#6B7280] text-xs mb-3">{"// client project"}</p>
+        {caseStudyProjects.map((project) => (
+          <CaseStudyCard key={project.name} project={project} />
+        ))}
       </div>
 
       {/* Featured Project - Sentinal */}
@@ -141,8 +167,8 @@ export default function ProjectsPage() {
         <BentoCard title="SENTINAL" className="relative">
           <div className="absolute top-3 right-3">
             <Image
-              src="/sentinal-logo.svg"
-              alt="Sentinal"
+              src={featuredProject.logo!}
+              alt={featuredProject.name}
               width={48}
               height={48}
             />
@@ -153,23 +179,23 @@ export default function ProjectsPage() {
             <div className="space-y-4">
               <div>
                 <p className="text-lg font-bold mb-1">
-                  <span className="text-[#374151]">export default</span> Sentinal
+                  <span className="text-[#374151]">export default</span> {featuredProject.name}
                 </p>
                 <p className="text-[#6B7280] text-sm">
-                  AI-powered desktop file manager
+                  {featuredProject.description}
                 </p>
               </div>
 
               <div className="text-sm space-y-2">
                 <p className="text-[#6B7280]">{"/**"}</p>
                 <p className="text-[#6B7280] pl-2">
-                  * {projects[0].fullDescription}
+                  * {featuredProject.fullDescription}
                 </p>
                 <p className="text-[#6B7280]">{" */"}</p>
               </div>
 
               <div className="flex flex-wrap gap-2">
-                {projects[0].technologies.map((tech) => (
+                {featuredProject.technologies.map((tech) => (
                   <span
                     key={tech}
                     className="text-xs px-2 py-1 bg-[#171717]/5 border border-[#171717]/10 rounded-sm"
@@ -180,7 +206,7 @@ export default function ProjectsPage() {
               </div>
 
               <a
-                href={projects[0].link}
+                href={featuredProject.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm hover:opacity-70 transition-opacity"
@@ -196,7 +222,7 @@ export default function ProjectsPage() {
             <div className="space-y-4">
               <p className="text-[#6B7280] text-xs">{"// key features"}</p>
               <div className="space-y-2">
-                {projects[0].highlights?.map((highlight, i) => (
+                {featuredProject.highlights?.map((highlight, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <span className="text-green-600 w-3 text-center">{">"}</span>
                     <span className="text-sm">{highlight}</span>
@@ -208,7 +234,7 @@ export default function ProjectsPage() {
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-500" />
                   <span className="text-xs text-[#6B7280]">
-                    Shipped {projects[0].year}
+                    Shipped {featuredProject.year}
                   </span>
                 </div>
               </div>
@@ -221,7 +247,7 @@ export default function ProjectsPage() {
       <div className="mb-8">
         <p className="text-[#6B7280] text-xs mb-3">{"// all projects"}</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {projects.slice(1).map((project) => (
+          {otherProjects.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
 
@@ -294,27 +320,88 @@ export default function ProjectsPage() {
   );
 }
 
+function CaseStudyCard({ project }: { project: Project }) {
+  return (
+    <BentoCard title={project.name.toUpperCase()} className="relative">
+      {project.logo && (
+        <div className="absolute top-3 right-3">
+          <Image
+            src={project.logo}
+            alt={project.name}
+            width={48}
+            height={48}
+          />
+        </div>
+      )}
+
+      <div className="space-y-4">
+        <div>
+          <p className="text-lg font-bold mb-1">
+            <span className="text-[#374151]">const</span> {project.name} =
+          </p>
+          <p className="text-[#6B7280] text-sm">{project.description}</p>
+        </div>
+
+        {project.fullDescription && (
+          <div className="text-sm space-y-2">
+            <p className="text-[#6B7280]">{"/**"}</p>
+            <p className="text-[#6B7280] pl-2">* {project.fullDescription}</p>
+            <p className="text-[#6B7280]">{" */"}</p>
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="text-xs px-2 py-1 bg-[#171717]/5 border border-[#171717]/10 rounded-sm"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-[#6B7280] text-xs">{"// build focus"}</p>
+          {project.highlights?.map((highlight, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <span className="text-green-600 w-3 text-center">{">"}</span>
+              <span className="text-sm">{highlight}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="pt-4 border-t border-[#171717]/10 flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className={`w-2 h-2 rounded-full ${statusConfig[project.status].color}`} />
+            <span className="text-xs text-[#6B7280]">
+              {statusConfig[project.status].label}
+            </span>
+          </div>
+
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm hover:opacity-70 transition-opacity"
+            >
+              Open live site
+              <span className="text-green-600">{">"}</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </BentoCard>
+  );
+}
+
 // Project Card Component
 function ProjectCard({
   project,
 }: {
-  project: {
-    name: string;
-    description: string;
-    fullDescription?: string;
-    technologies: string[];
-    status: "shipped" | "in-progress" | "planned";
-    link?: string;
-    highlights?: string[];
-    year?: string;
-  };
+  project: Project;
 }) {
-  const statusConfig = {
-    shipped: { color: "bg-green-500", label: "Shipped" },
-    "in-progress": { color: "bg-yellow-500 animate-pulse", label: "Building" },
-    planned: { color: "bg-[#171717]/30", label: "Planned" },
-  };
-
   const CardContent = (
     <div className="space-y-3">
       <div>

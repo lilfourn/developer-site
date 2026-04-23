@@ -1,61 +1,42 @@
+import Image from "next/image";
 import { BentoCard } from "./bento-card";
-
-const techStack = [
-  "Python",
-  "AWS Lambda",
-  "Bedrock (Claude)",
-  "DynamoDB",
-  "Jenkins",
-  "CI/CD",
-];
+import { experiences } from "@/data/experience";
 
 export function ExperienceCard() {
   return (
     <BentoCard title="EXPERIENCE" className="col-span-1 md:col-span-2 lg:col-span-3">
       <div className="space-y-4">
-        <div>
-          <p className="font-bold text-lg">
-            <span className="text-[#374151]">async function</span>{" "}
-            buildAIAgent() {"{"}
-          </p>
-          <div className="flex items-center gap-2 pl-4 text-sm">
-            <span className="text-[#6B7280]">@</span>
-            <span>Asure Software</span>
-            <span className="text-[#6B7280]">|</span>
-            <span className="text-[#6B7280]">June 2025 - August 2025</span>
-          </div>
+        <p className="font-bold text-lg">
+          <span className="text-[#374151]">const</span> experience = [
+        </p>
+
+        <div className="pl-4 space-y-4">
+          {experiences.map((exp) => (
+            <div key={exp.id} className="space-y-2">
+              <div className="flex items-start gap-3">
+                <Image
+                  src={exp.logo}
+                  alt={exp.company}
+                  width={exp.logoWidth}
+                  height={exp.logoHeight}
+                  className="h-7 w-auto opacity-80 flex-shrink-0 mt-0.5"
+                />
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                    <span className="font-medium">{exp.company}</span>
+                    <span className="text-[#6B7280]">|</span>
+                    <span className="text-[#6B7280]">{exp.period}</span>
+                  </div>
+                  <p className="text-sm text-[#6B7280]">{exp.role}</p>
+                </div>
+              </div>
+
+              <p className="pl-10 text-sm text-[#6B7280]">{exp.description}</p>
+            </div>
+          ))}
         </div>
 
-        <div className="pl-4 space-y-3">
-          <p className="text-[#6B7280] text-sm">{"// Tech stack"}</p>
-          <div className="flex flex-wrap gap-2">
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-2 py-1 border border-[#171717]/30 rounded-sm text-xs
-                           transition-all duration-300 ease-linear
-                           hover:bg-[#171717] hover:text-[#CCCCCC] cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <div className="space-y-2 text-sm pt-2">
-            <p className="text-[#6B7280]">{"// Highlights"}</p>
-            <p className="pl-4">
-              <span className="text-[#6B7280]">-</span> Built production-ready AI agent for Canada Tax Branch
-            </p>
-            <p className="pl-4">
-              <span className="text-[#6B7280]">-</span> Architected end-to-end cloud infrastructure on AWS
-            </p>
-            <p className="pl-4">
-              <span className="text-[#6B7280]">-</span> Shipped customer-facing LLM feature to production
-            </p>
-          </div>
-        </div>
-
-        <p className="font-bold">{"}"}</p>
+        <p className="font-bold">];</p>
       </div>
     </BentoCard>
   );

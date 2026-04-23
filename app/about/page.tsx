@@ -85,7 +85,7 @@ export default function AboutPage() {
             <div className="pt-2 border-t border-[#171717]/10">
               <p className="text-sm">
                 <span className="text-[#374151]">const</span> status ={" "}
-                <span className="text-green-600">{'"Open to opportunities"'}</span>;
+                <span className="text-green-600">{'"Incoming at Dimensional Fund Advisors"'}</span>;
               </p>
             </div>
           </div>
@@ -106,8 +106,8 @@ export default function AboutPage() {
               <p className="text-[10px] sm:text-xs text-[#6B7280]">Minors</p>
             </div>
             <div>
-              <p className="text-lg sm:text-2xl font-bold">1</p>
-              <p className="text-[10px] sm:text-xs text-[#6B7280]">Internship</p>
+              <p className="text-lg sm:text-2xl font-bold">2</p>
+              <p className="text-[10px] sm:text-xs text-[#6B7280]">Internships</p>
             </div>
           </div>
         </BentoCard>
@@ -211,7 +211,7 @@ export default function AboutPage() {
 
                 <TimelineItem
                   year="2025"
-                  status="in-progress"
+                  status="merged"
                   title="Building in Public"
                   description="Shipping personal projects like Sentinal, exploring AI applications"
                 />
@@ -219,10 +219,9 @@ export default function AboutPage() {
                 {/* Future */}
                 <TimelineItem
                   year="2026"
-                  status="planned"
+                  status="in-progress"
                   title="Summer Internship"
-                  description="Looking for opportunities in AI/ML, Full-Stack, or FinTech"
-                  placeholder
+                  description="Joining Dimensional Fund Advisors as Incoming Software Engineering Intern"
                 />
 
                 <TimelineItem
